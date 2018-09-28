@@ -13,29 +13,37 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cict.offical.network.entity.SysRole;
 import com.cict.offical.network.service.SysRoleService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @Controller
 @RequestMapping(value = "/role")
+@Api(value="角色管理",tags= {"角色管理"})
 public class SysRoleController {
    
 	@Autowired
 	private SysRoleService roleService;
 	
 	@GetMapping(value = "/getAllRole")	
+	@ApiOperation(value = "查询所有的角色",notes="查询所有的角色")
 	public @ResponseBody List<SysRole> getAllRole() {
 		return roleService.getAllRole();
 	}
 	
-	@PostMapping(value = "/addRole")	
+	@PostMapping(value = "/addRole")
+	@ApiOperation(value = "新增角色",notes="新增角色")
 	public @ResponseBody SysRole addRole(@RequestBody SysRole role) {
 		return roleService.addRole(role);
 	}
 	
 	@PostMapping(value = "/updateRole")	
+	@ApiOperation(value = "修改角色",notes="修改角色")
 	public @ResponseBody SysRole updateRole(@RequestBody SysRole role) {
 		return roleService.updateRole(role);
 	}	
 	
 	@PostMapping(value = "/deleteRole")	
+	@ApiOperation(value = "删除角色",notes="删除角色")
 	public @ResponseBody String deleteRole(Integer id) {
 		roleService.deleteRole(id);
 		return "";

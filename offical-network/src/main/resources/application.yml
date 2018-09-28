@@ -20,7 +20,7 @@ spring:
     prefix: classpath:/templates/
     cache: false
     
-matcherPath: /hello
+matcherPath: /hello,/swagger**
 
 
 
