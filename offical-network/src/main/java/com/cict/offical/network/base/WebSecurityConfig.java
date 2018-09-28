@@ -31,10 +31,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests() // 定义哪些url需要保护，哪些url不需要保护
 				.antMatchers(this.getAntMatchers(this.matcherPaths)).permitAll() // 定义不需要认证就可以访问
 				.anyRequest().authenticated()
-		        .and().formLogin().loginPage("/login")// 定义当需要用户登录时候，转到的登录页面
+		        .and()
+		     .formLogin().loginPage("/login")// 定义当需要用户登录时候，转到的登录页面
 				.defaultSuccessUrl("/index")// 设置默认登录成功跳转页面
 				.failureUrl("/login?error").permitAll() 
-				.and().logout().permitAll();
+				.and()
+				.logout().permitAll();
 		http.csrf().disable();
 		  
 		

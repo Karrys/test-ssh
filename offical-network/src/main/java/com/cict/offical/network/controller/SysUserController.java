@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cict.offical.network.entity.SysUser;
 import com.cict.offical.network.service.SysUserService;
 
+import io.swagger.annotations.Api;
+
 @Controller
-@RequestMapping(value = "/user")	
+@RequestMapping(value = "/user")
+@Api(value="用户管理",tags= {"用户管理"})
 public class SysUserController {
    
 	@Autowired
