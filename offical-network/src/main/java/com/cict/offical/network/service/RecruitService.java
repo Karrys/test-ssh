@@ -7,25 +7,27 @@ import org.springframework.stereotype.Service;
 
 import com.cict.offical.network.dao.RecruitRepository;
 import com.cict.offical.network.entity.Recruit;
+import com.cict.offical.network.utils.Result;
 
 @Service
 public class RecruitService {
 	    @Autowired
 	    RecruitRepository recruitRepository;
 	   
-		public List<Recruit> getAllRecruit() {
-			return recruitRepository.findAll();
+		public Result<List<Recruit>> getAllRecruit() {
+			return Result.returnResult(recruitRepository.findAll());
 		}
-		public Recruit addRecruit(Recruit recruit) {
+		public Result<String> addRecruit(Recruit recruit) {
 			recruitRepository.save(recruit);
-			return recruit;
+			return Result.returnResult();
 		}
-		public Recruit updateRecruit(Recruit recruit) {
+		public Result<String> updateRecruit(Recruit recruit) {
 			recruitRepository.save(recruit);
-			return recruit;
+			return Result.returnResult();
 		}
-		public void deleteRecruit(Integer id) {
+		public Result<String> deleteRecruit(Integer id) {
 			recruitRepository.delete(id);
+			return Result.returnResult();
 		}
 	}
 

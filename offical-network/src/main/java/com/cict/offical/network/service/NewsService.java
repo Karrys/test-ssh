@@ -7,25 +7,27 @@ import org.springframework.stereotype.Service;
 
 import com.cict.offical.network.dao.NewsRepository;
 import com.cict.offical.network.entity.News;
+import com.cict.offical.network.utils.Result;
 
 @Service
 public class NewsService {
 	    @Autowired
 	    NewsRepository newsRepository;
 	    
-		public List<News> getAllNews() {
-			return newsRepository.findAll();
+		public Result<List<News>> getAllNews() {
+			return Result.returnResult(newsRepository.findAll());
 		}
-		public News addNews(News news) {
+		public Result<String> addNews(News news) {
 			newsRepository.save(news);
-			return news;
+			return Result.returnResult();
 		}
-		public News updateNews(News news) {
+		public Result<String> updateNews(News news) {
 			newsRepository.save(news);
-			return news;
+			return Result.returnResult();
 		}
-		public void deleteNews(Integer id) {
+		public Result<String> deleteNews(Integer id) {
 			newsRepository.delete(id);
+			return Result.returnResult();
 		}
 	}
 

@@ -22,6 +22,10 @@ public class News implements Serializable{
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
+	
+	public News() {
+		
+	}
 
 	public int getId() {
 		return id;

@@ -7,27 +7,29 @@ import org.springframework.stereotype.Service;
 
 import com.cict.offical.network.dao.SysRoleRepository;
 import com.cict.offical.network.entity.SysRole;
+import com.cict.offical.network.utils.Result;
 
 @Service
 public class SysRoleService {
 	@Autowired
 	SysRoleRepository roleRepository;
 
-	public List<SysRole> getAllRole() {
-		return roleRepository.findAll();
+	public Result<List<SysRole>> getAllRole() {
+		return Result.returnResult(roleRepository.findAll());
 	}
 
-	public SysRole addRole(SysRole role) {
+	public Result<String> addRole(SysRole role) {
 		roleRepository.save(role);
-		return role;
+		return Result.returnResult();		
 	}
 
-	public SysRole updateRole(SysRole role) {
+	public Result<String> updateRole(SysRole role) {
 		roleRepository.save(role);
-		return role;
+		return Result.returnResult();		
 	}
 
-	public void deleteRole(Integer id) {
+	public Result<String> deleteRole(Integer id) {
 		roleRepository.delete(id);
+		return Result.returnResult();		
 	}
 }

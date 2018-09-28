@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cict.offical.network.entity.SysUser;
 import com.cict.offical.network.service.SysUserService;
+import com.cict.offical.network.utils.Result;
 
 import io.swagger.annotations.Api;
 
@@ -24,24 +25,23 @@ public class SysUserController {
 	private SysUserService userService;
 	
 	@GetMapping(value = "/getAllUser")	
-	public @ResponseBody List<SysUser> getAllUser() {
+	public @ResponseBody Result<List<SysUser>> getAllUser() {
 		return userService.getAllUser();
 	}
 	
 	@PostMapping(value = "/addUser")	
-	public @ResponseBody SysUser addUser(@RequestBody SysUser user) {
+	public @ResponseBody Result<String> addUser(@RequestBody SysUser user) {
 		return userService.addUser(user);
 	}
 	
 	@PostMapping(value = "/updateUser")	
-	public @ResponseBody SysUser updateUser(@RequestBody SysUser user) {
+	public @ResponseBody Result<String> updateUser(@RequestBody SysUser user) {
 		return userService.updateUser(user);
 	}	
 	
 	@PostMapping(value = "/deleteUser")	
-	public @ResponseBody String deleteUser(Integer id) {
-		userService.deleteUser(id);
-		return "";
+	public @ResponseBody Result<String> deleteUser(Integer id) {		
+		return userService.deleteUser(id);
 	}
 	
 }

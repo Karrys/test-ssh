@@ -26,6 +26,10 @@ public class Recruit implements Serializable{
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date releaseDate;
+	
+	public Recruit() {
+		
+	}
 
 	public int getId() {
 		return id;

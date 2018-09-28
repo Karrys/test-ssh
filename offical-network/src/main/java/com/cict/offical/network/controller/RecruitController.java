@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cict.offical.network.entity.Recruit;
 import com.cict.offical.network.service.RecruitService;
+import com.cict.offical.network.utils.Result;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,19 +27,19 @@ public class RecruitController {
 	
 	@GetMapping(value = "/getAllRecruit")	
 	@ApiOperation(value = "查询所有的招聘信息",notes="查询所有的招聘信息")
-	public @ResponseBody List<Recruit> getAllRecruit() {
+	public @ResponseBody Result<List<Recruit>> getAllRecruit() {
 		return recruitService.getAllRecruit();
 	}
 	
 	@PostMapping(value = "/addRecruit")	
 	@ApiOperation(value = "新增招聘信息",notes="新增招聘信息")
-	public @ResponseBody Recruit addRecruit(@RequestBody Recruit recruit) {
+	public @ResponseBody Result<String> addRecruit(@RequestBody Recruit recruit) {
 		return recruitService.addRecruit(recruit);
 	}
 	
 	@PostMapping(value = "/updateRecruit")
 	@ApiOperation(value = "修改招聘信息",notes="修改招聘信息")
-	public @ResponseBody Recruit updateRecruit(@RequestBody Recruit recruit) {
+	public @ResponseBody Result<String> updateRecruit(@RequestBody Recruit recruit) {
 		return recruitService.updateRecruit(recruit);
 	}	
 	

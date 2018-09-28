@@ -1,45 +1,64 @@
 <!DOCTYPE html>
-<html lang="en" 
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
-<meta charset="UTF-8" />
-<title>Security</title>
-</head>
-<body>
-	<h1>Spring Security!</h1>
-	<p>
-	
-		点击<a th:href="@{/hello}">这里</a>到碗里来！
-	</p>
-	
-	
-    <div >
-        <h1 th:text="${title}"></h1>
-        <p  th:text="${content}"></p>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <p  th:text="${extraInfo}"></p>
-        </div>
-        <div sec:authorize="hasRole('ROLE_USER')">
-            <p >无更多显示信息</p>
-        </div>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit"  value="注销"/>
-        </form> 
-    
-</div>
-
-<div>
-
-    <div sec:authorize="isAuthenticated()">
-        <p>已有用户登录</p>
-        <p>登录者:<span sec:authentication="name"></span></p>
-        <p>角色:<span sec:authentication="principal.authorities"></span></p>
-    </div>
-    <div sec:authorize="isAnonymous()">
-        <p>未有用户登录</p>
-    </div>
-</div>
- 
-</body>
-</html> 
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+ <head> 
+  <meta charset="UTF-8" /> 
+  <title>Security</title> 
+ </head> 
+ <body> 
+  <h1>Spring Security!</h1> 
+  <p> 点击<a th:href="@{/hello}">这里</a>到碗里来！ </p> 
+  <div> 
+   <h1 th:text="${title}"></h1> 
+   <p th:text="${content}"></p> 
+   <div sec:authorize="hasRole('ROLE_ADMIN')"> 
+    <p th:text="${extraInfo}"></p> 
+   </div> 
+   <div sec:authorize="hasRole('ROLE_USER')"> 
+    <p>无更多显示信息</p> 
+   </div> 
+   <form th:action="@{/logout}" method="post"> 
+    <input type="submit" value="注销" /> 
+   </form> 
+  </div> 
+  <div> 
+   <div sec:authorize="isAuthenticated()"> 
+    <p>已有用户登录</p> 
+    <p> 登录者:<span sec:authentication="name"></span> </p> 
+    <p> 角色:<span sec:authentication="principal.authorities"></span> </p> 
+   </div> 
+   <div sec:authorize="isAnonymous()"> 
+    <p>未有用户登录</p> 
+   </div> 
+  </div> 
+  <div> 
+   <table border="1"> 
+    <tbody>
+     <tr> 
+      <th>ID</th>
+      <th>用户名</th> 
+      <th>密码</th> 
+      <th>状态变量：index</th> 
+      <th>状态变量：count</th> 
+      <th>状态变量：size</th> 
+      <th>状态变量：even</th> 
+      <th>状态变量：odd</th> 
+      <th>状态变量：first</th> 
+      <th>状态变量：last</th> 
+     </tr> 
+     <tr th:each="info,infoStat : ${users.data}"> 
+      <td th:text="${info.id}"></td> 
+      <td th:text="${info.username}"></td> 
+      <td th:text="${info.password}"></td> 
+      <th th:text="${infoStat.index}"></th> 
+      <th th:text="${infoStat.count}"></th> 
+      <th th:text="${infoStat.size}"></th> 
+      <th th:text="${infoStat.even}"></th> 
+      <th th:text="${infoStat.odd}"></th> 
+      <th th:text="${infoStat.first}"></th> 
+      <th th:text="${infoStat.last}"></th> 
+     </tr> 
+    </tbody>
+   </table> 
+  </div>   
+ </body>
+</html>

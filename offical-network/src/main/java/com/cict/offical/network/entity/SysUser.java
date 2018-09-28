@@ -24,10 +24,14 @@ public class SysUser implements UserDetails {
     @GeneratedValue
     private int id;
     private String username;
-    private String password;
+    private String password;    
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<SysRole> roles;
+    
+    public SysUser() {
+    	
+    }
 
     public int getId() {
         return id;

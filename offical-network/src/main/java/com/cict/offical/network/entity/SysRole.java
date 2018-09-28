@@ -16,6 +16,9 @@ public class SysRole implements Serializable{
     private int id;
     private String name;
 
+    public SysRole() {
+    	
+    }
 
     public int getId() {
         return id;

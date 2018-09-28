@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cict.offical.network.entity.News;
 import com.cict.offical.network.service.NewsService;
+import com.cict.offical.network.utils.Result;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,27 +27,26 @@ public class NewsController {
 	
 	@GetMapping(value = "/getAllNews")	
 	@ApiOperation(value = "查询所有的新闻",notes="查询所有的新闻")
-	public @ResponseBody List<News> getAllNews() {
+	public @ResponseBody Result<List<News>> getAllNews() {
 		return newsService.getAllNews();
 	}
 	
 	@PostMapping(value = "/addNews")	
 	@ApiOperation(value = "新增新闻",notes="新增新闻")
-	public @ResponseBody News addNews(@RequestBody News news) {
+	public @ResponseBody Result<String> addNews(@RequestBody News news) {
 		return newsService.addNews(news);
 	}
 	
 	@PostMapping(value = "/updateNews")	
 	@ApiOperation(value = "修改新闻",notes="修改新闻")
-	public @ResponseBody News updateNews(@RequestBody News news) {
+	public @ResponseBody Result<String> updateNews(@RequestBody News news) {
 		return newsService.updateNews(news);
 	}	
 	
 	@PostMapping(value = "/deleteNews")
 	@ApiOperation(value = "删除新闻",notes="删除新闻")
-	public @ResponseBody String deleteNews(Integer id) {
-		newsService.deleteNews(id);
-		return "";
+	public @ResponseBody Result<String> deleteNews(Integer id) {
+		return newsService.deleteNews(id);
 	}
 	
 }
