@@ -9,18 +9,26 @@ spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
     url: jdbc:sqlite::resource:db/news.db #数据库，在resources目录创建了资源文件夹db，根据实际情况指定
+    #url: jdbc:sqlite:F:\\db\\sqlite\\db.db
     username: news
-    password: news
+    password: news   
   jpa:
+    properties:
+      hibernate:        
+        #格式化sql
+        format_sql: true
     database-platform: com.cict.offical.network.base.SQLiteDialect
     hibernate:
       ddl-auto: update      
     generate-ddl: true
+    show-sql: true
   thymeleaf:
     prefix: classpath:/templates/
     cache: false
     
-matcherPath: /hello,/swagger**
+matcherPath: /hello,/home,/static/*
+
+uploadPath: F://upload//news_pic
 
 
 

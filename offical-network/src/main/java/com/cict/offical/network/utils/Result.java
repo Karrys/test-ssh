@@ -48,14 +48,18 @@ public class Result<T> {
 	}
 
 	public static <T> Result<T> returnResult() {
-		return new Result(CODE.OK.getValue());
+		return new Result<T>(CODE.OK.getValue());
 	}
 
 	public static <T> Result<T> returnResult(T data) {
-		return new Result(CODE.OK.getValue(), data);
-	}
+		return new Result<T>(CODE.OK.getValue(), data);
+	}	
 
 	public static <T> Result<T> returnErrorResult(String msg) {
-		return new Result(CODE.ERROR.getValue(), msg);
+		return new Result<T>(CODE.ERROR.getValue(), msg);
+	}
+	
+	public static <T> Result<T> returnResult(int code,String msg) {
+		return new Result<T>(code,msg);
 	}
 }

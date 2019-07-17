@@ -1,34 +1,32 @@
 package com.cict.offical.network.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.cict.offical.network.dao.RecruitRepository;
 import com.cict.offical.network.entity.Recruit;
-import com.cict.offical.network.utils.Result;
 
 @Service
 public class RecruitService {
-	    @Autowired
-	    RecruitRepository recruitRepository;
-	   
-		public Result<List<Recruit>> getAllRecruit() {
-			return Result.returnResult(recruitRepository.findAll());
-		}
-		public Result<String> addRecruit(Recruit recruit) {
-			recruitRepository.save(recruit);
-			return Result.returnResult();
-		}
-		public Result<String> updateRecruit(Recruit recruit) {
-			recruitRepository.save(recruit);
-			return Result.returnResult();
-		}
-		public Result<String> deleteRecruit(Integer id) {
-			recruitRepository.delete(id);
-			return Result.returnResult();
-		}
+	@Autowired
+	RecruitRepository recruitRepository;
+
+	public Page<Recruit> getAllRecruit(Specification<Recruit> spec, Pageable pageable) {
+		return recruitRepository.findAll(spec, pageable);
 	}
 
-	
+	public Recruit getRecruit(int id) {
+		return recruitRepository.findOne(id);
+	}
+
+	public Recruit saveRecruit(Recruit recruit) {
+		return recruitRepository.save(recruit);
+	}
+
+	public void deleteRecruit(Integer id) {
+		recruitRepository.delete(id);
+	}
+}

@@ -1,0 +1,35 @@
+server:
+  port: 8090
+  tomcat:
+    uri-encoding: UTF-8 
+
+spring:
+  application:
+    name: cict-offical-network
+  datasource:    
+    driver-class-name: oracle.jdbc.OracleDriver    
+    url: jdbc:oracle:thin:@192.168.1.114:1521:orcl
+    username: test
+    password: test     
+  jpa:
+    properties:
+      hibernate:
+        #默认schema
+        default_schema: test
+        #格式化sql
+        format_sql: true    
+    database-platform: org.hibernate.dialect.OracleDialect
+    hibernate:
+      ddl-auto: update      
+    generate-ddl: true
+    show-sql: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    
+matcherPath: /hello,/home,/static/*
+
+uploadPath: F://upload//pic
+
+
+

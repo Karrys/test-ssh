@@ -1,16 +1,16 @@
 package com.cict.offical.network.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cict.offical.network.dao.SysUserRepository;
 import com.cict.offical.network.entity.SysUser;
-import com.cict.offical.network.utils.Result;
 
 @Service
 public class SysUserService implements UserDetailsService {
@@ -31,21 +31,24 @@ public class SysUserService implements UserDetailsService {
 	        return user;
 	    }
 	    
-		public Result<List<SysUser>> getAllUser() {
-			List<SysUser> users = userRepository.findAll();
-			return Result.returnResult(users);
+		public Page<SysUser> getAllUser(String userName,Pageable pageable) {
+			return userRepository.findByUsernameLike(userName,pageable);
 		}
-		public Result<String> addUser(SysUser user) {
-			userRepository.save(user);
-			return Result.returnResult();
+		public SysUser getUser(int id) {
+			return userRepository.findOne(id);
 		}
-		public Result<String> updateUser(SysUser user) {
-			userRepository.save(user);
-			return Result.returnResult();
+		
+		public SysUser saveUser(SysUser user) {
+			if(user.getId() == 0) {
+			  String password = user.getPassword();
+			  password = new BCryptPasswordEncoder().encode(password==null?"123456":password);
+			  user.setPassword(password);
+			}
+			
+			return userRepository.save(user);
 		}
-		public Result<String> deleteUser(Integer id) {
+		public void deleteUser(Integer id) {
 			userRepository.delete(id);	
-			return Result.returnResult();
 		}
 	}
 
